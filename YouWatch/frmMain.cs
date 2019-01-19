@@ -450,5 +450,10 @@ namespace YouWatch
                 MoveForm();
             }
         }
+
+        private void trkBar_Opacity_Scroll(object sender, EventArgs e)
+        {
+            this.Opacity = trkBar_Opacity.Value / (double)100;
+        }
     }
 }
