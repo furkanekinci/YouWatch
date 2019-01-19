@@ -29,8 +29,35 @@ namespace YouWatch
                 this.ActiveControl = wbbYouTube;
             }
 
+            // Test if the About item was selected from the system menu
+            if ((m.Msg == WM_SYSCOMMAND) && ((int)m.WParam == SYSMENU_ABOUT_ID))
+            {
+                pnlTop.Visible = ControlsPanelVisible = !ControlsPanelVisible;
+            }
+
             base.WndProc(ref m);
         }
+        #endregion
+
+        #region Add Menu
+        // P/Invoke constants
+        private const int WM_SYSCOMMAND = 0x112;
+        private const int MF_STRING = 0x0;
+        private const int MF_SEPARATOR = 0x800;
+
+        // P/Invoke declarations
+        [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
+        private static extern IntPtr GetSystemMenu(IntPtr hWnd, bool bRevert);
+
+        [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
+        private static extern bool AppendMenu(IntPtr hMenu, int uFlags, int uIDNewItem, string lpNewItem);
+
+        [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
+        private static extern bool InsertMenu(IntPtr hMenu, int uPosition, int uFlags, int uIDNewItem, string lpNewItem);
+
+
+        // ID for the About item on the system menu
+        private int SYSMENU_ABOUT_ID = 0x1;
         #endregion
 
         Size BeforeSize;
@@ -44,12 +71,18 @@ namespace YouWatch
         bool ShowBorder = true;
         bool IsResized = false;
 
+        bool ControlsPanelVisible = true;
+
         string YoutubeURLPattern = "https://www.youtube.com/embed/{0}?";
         string EmbedCodePattern = "<html><head><meta http-equiv='X-UA-Compatible' content='IE=edge'><style>*{margin:0px;padding:0px;}</style></head><iframe style='position:absolute; left:0; top:0; width:100%; height:100%' src='@URL@&autoplay=1&showinfo=1&controls=1&autohide=1' frameborder='0' allowfullscreen></iframe></html>";
 
         private void ShowControls()
         {
-            pnlTop.Visible = true;
+            if (this.ControlsPanelVisible)
+            {
+                pnlTop.Visible = true;
+            }
+
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Sizable;
 
             if (!chkShowBorder.Checked)
@@ -229,6 +262,20 @@ namespace YouWatch
             }
         }
 
+        protected override void OnHandleCreated(EventArgs e)
+        {
+            base.OnHandleCreated(e);
+
+            // Get a handle to a copy of this form's system (window) menu
+            IntPtr hSysMenu = GetSystemMenu(this.Handle, false);
+
+            // Add a separator
+            AppendMenu(hSysMenu, MF_SEPARATOR, 0, string.Empty);
+
+            // Add the About menu item
+            AppendMenu(hSysMenu, MF_STRING, SYSMENU_ABOUT_ID, "Show/Hide Controls");
+        }
+
         public frmMain()
         {
             GlobalMouseHandler gmh = new GlobalMouseHandler();
@@ -382,28 +429,14 @@ namespace YouWatch
             }
         }
 
+        private void lblCloseControls_Click(object sender, EventArgs e)
+        {
+            pnlTop.Visible = ControlsPanelVisible = false;
+        }
+
         private void btnGO_Click(object sender, EventArgs e)
         {
             ShowVideo(txtURL.Text);
-        }
-        private void btnMinimize_Click(object sender, EventArgs e)
-        {
-            this.WindowState = FormWindowState.Minimized;
-        }
-        private void btnMaximize_Click(object sender, EventArgs e)
-        {
-            if (this.WindowState != FormWindowState.Maximized)
-            {
-                this.WindowState = FormWindowState.Maximized;
-            }
-            else
-            {
-                this.WindowState = FormWindowState.Normal;
-            }
-        }
-        private void btnClose_Click(object sender, EventArgs e)
-        {
-            Application.Exit();
         }
 
         private void wbbYouTube_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
