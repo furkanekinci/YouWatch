@@ -32,6 +32,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
             this.txtURL = new System.Windows.Forms.TextBox();
             this.pnlTop = new System.Windows.Forms.Panel();
+            this.lblCloseControls = new System.Windows.Forms.Label();
             this.chkMoveByMouse = new System.Windows.Forms.CheckBox();
             this.chkShowBorder = new System.Windows.Forms.CheckBox();
             this.chkShowInTaskbar = new System.Windows.Forms.CheckBox();
@@ -42,7 +43,6 @@
             this.timHider = new System.Windows.Forms.Timer(this.components);
             this.wbbYouTube = new System.Windows.Forms.WebBrowser();
             this.ttp = new System.Windows.Forms.ToolTip(this.components);
-            this.lblCloseControls = new System.Windows.Forms.Label();
             this.pnlTop.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -53,7 +53,7 @@
             this.txtURL.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.txtURL.Location = new System.Drawing.Point(51, 6);
             this.txtURL.Name = "txtURL";
-            this.txtURL.Size = new System.Drawing.Size(371, 29);
+            this.txtURL.Size = new System.Drawing.Size(367, 29);
             this.txtURL.TabIndex = 1;
             this.txtURL.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtURL_KeyDown);
             // 
@@ -71,8 +71,20 @@
             this.pnlTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlTop.Location = new System.Drawing.Point(0, 0);
             this.pnlTop.Name = "pnlTop";
-            this.pnlTop.Size = new System.Drawing.Size(495, 60);
+            this.pnlTop.Size = new System.Drawing.Size(491, 60);
             this.pnlTop.TabIndex = 2;
+            // 
+            // lblCloseControls
+            // 
+            this.lblCloseControls.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblCloseControls.Location = new System.Drawing.Point(477, 4);
+            this.lblCloseControls.Name = "lblCloseControls";
+            this.lblCloseControls.Size = new System.Drawing.Size(12, 13);
+            this.lblCloseControls.TabIndex = 9;
+            this.lblCloseControls.Text = "-";
+            this.lblCloseControls.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.ttp.SetToolTip(this.lblCloseControls, "Hide this panel. It can be shown again by Window Menu.");
+            this.lblCloseControls.Click += new System.EventHandler(this.lblCloseControls_Click);
             // 
             // chkMoveByMouse
             // 
@@ -137,7 +149,7 @@
             // 
             this.btnGO.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnGO.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.btnGO.Location = new System.Drawing.Point(428, 6);
+            this.btnGO.Location = new System.Drawing.Point(424, 6);
             this.btnGO.Name = "btnGO";
             this.btnGO.Size = new System.Drawing.Size(35, 29);
             this.btnGO.TabIndex = 3;
@@ -170,26 +182,15 @@
             this.wbbYouTube.MinimumSize = new System.Drawing.Size(20, 20);
             this.wbbYouTube.Name = "wbbYouTube";
             this.wbbYouTube.ScrollBarsEnabled = false;
-            this.wbbYouTube.Size = new System.Drawing.Size(495, 211);
+            this.wbbYouTube.Size = new System.Drawing.Size(491, 211);
             this.wbbYouTube.TabIndex = 0;
             this.wbbYouTube.DocumentCompleted += new System.Windows.Forms.WebBrowserDocumentCompletedEventHandler(this.wbbYouTube_DocumentCompleted);
-            // 
-            // lblCloseControls
-            // 
-            this.lblCloseControls.Location = new System.Drawing.Point(481, 4);
-            this.lblCloseControls.Name = "lblCloseControls";
-            this.lblCloseControls.Size = new System.Drawing.Size(12, 13);
-            this.lblCloseControls.TabIndex = 9;
-            this.lblCloseControls.Text = "-";
-            this.lblCloseControls.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.ttp.SetToolTip(this.lblCloseControls, "Hide this panel. It can be shown again by Window Menu.");
-            this.lblCloseControls.Click += new System.EventHandler(this.lblCloseControls_Click);
             // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(495, 271);
+            this.ClientSize = new System.Drawing.Size(491, 271);
             this.Controls.Add(this.wbbYouTube);
             this.Controls.Add(this.pnlTop);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
