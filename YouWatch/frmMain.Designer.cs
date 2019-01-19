@@ -33,6 +33,9 @@
             this.txtURL = new System.Windows.Forms.TextBox();
             this.pnlTop = new System.Windows.Forms.Panel();
             this.chkMoveByMouse = new System.Windows.Forms.CheckBox();
+            this.btnClose = new System.Windows.Forms.Button();
+            this.btnMaximize = new System.Windows.Forms.Button();
+            this.btnMinimize = new System.Windows.Forms.Button();
             this.chkShowBorder = new System.Windows.Forms.CheckBox();
             this.chkShowInTaskbar = new System.Windows.Forms.CheckBox();
             this.chkKeepRatio = new System.Windows.Forms.CheckBox();
@@ -41,8 +44,6 @@
             this.lblURL = new System.Windows.Forms.Label();
             this.timHider = new System.Windows.Forms.Timer(this.components);
             this.wbbYouTube = new System.Windows.Forms.WebBrowser();
-            this.ttp = new System.Windows.Forms.ToolTip(this.components);
-            this.lblCloseControls = new System.Windows.Forms.Label();
             this.pnlTop.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -53,14 +54,16 @@
             this.txtURL.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.txtURL.Location = new System.Drawing.Point(51, 6);
             this.txtURL.Name = "txtURL";
-            this.txtURL.Size = new System.Drawing.Size(371, 29);
+            this.txtURL.Size = new System.Drawing.Size(327, 29);
             this.txtURL.TabIndex = 1;
             this.txtURL.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtURL_KeyDown);
             // 
             // pnlTop
             // 
-            this.pnlTop.Controls.Add(this.lblCloseControls);
             this.pnlTop.Controls.Add(this.chkMoveByMouse);
+            this.pnlTop.Controls.Add(this.btnClose);
+            this.pnlTop.Controls.Add(this.btnMaximize);
+            this.pnlTop.Controls.Add(this.btnMinimize);
             this.pnlTop.Controls.Add(this.chkShowBorder);
             this.pnlTop.Controls.Add(this.chkShowInTaskbar);
             this.pnlTop.Controls.Add(this.chkKeepRatio);
@@ -84,6 +87,48 @@
             this.chkMoveByMouse.TabIndex = 6;
             this.chkMoveByMouse.Text = "Move By Mouse";
             this.chkMoveByMouse.UseVisualStyleBackColor = true;
+            // 
+            // btnClose
+            // 
+            this.btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnClose.FlatAppearance.BorderSize = 0;
+            this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnClose.Location = new System.Drawing.Point(472, 7);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(20, 28);
+            this.btnClose.TabIndex = 5;
+            this.btnClose.TabStop = false;
+            this.btnClose.Text = "X";
+            this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+            // 
+            // btnMaximize
+            // 
+            this.btnMaximize.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnMaximize.FlatAppearance.BorderSize = 0;
+            this.btnMaximize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnMaximize.Location = new System.Drawing.Point(453, 7);
+            this.btnMaximize.Name = "btnMaximize";
+            this.btnMaximize.Size = new System.Drawing.Size(20, 28);
+            this.btnMaximize.TabIndex = 5;
+            this.btnMaximize.TabStop = false;
+            this.btnMaximize.Text = "F";
+            this.btnMaximize.UseVisualStyleBackColor = true;
+            this.btnMaximize.Click += new System.EventHandler(this.btnMaximize_Click);
+            // 
+            // btnMinimize
+            // 
+            this.btnMinimize.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnMinimize.FlatAppearance.BorderSize = 0;
+            this.btnMinimize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnMinimize.Location = new System.Drawing.Point(434, 7);
+            this.btnMinimize.Name = "btnMinimize";
+            this.btnMinimize.Size = new System.Drawing.Size(20, 28);
+            this.btnMinimize.TabIndex = 5;
+            this.btnMinimize.TabStop = false;
+            this.btnMinimize.Text = "_";
+            this.btnMinimize.UseVisualStyleBackColor = true;
+            this.btnMinimize.Click += new System.EventHandler(this.btnMinimize_Click);
             // 
             // chkShowBorder
             // 
@@ -136,10 +181,10 @@
             // btnGO
             // 
             this.btnGO.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnGO.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.btnGO.Location = new System.Drawing.Point(428, 6);
+            this.btnGO.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.btnGO.Location = new System.Drawing.Point(384, 6);
             this.btnGO.Name = "btnGO";
-            this.btnGO.Size = new System.Drawing.Size(35, 29);
+            this.btnGO.Size = new System.Drawing.Size(44, 29);
             this.btnGO.TabIndex = 3;
             this.btnGO.Text = "GO";
             this.btnGO.UseVisualStyleBackColor = true;
@@ -174,22 +219,12 @@
             this.wbbYouTube.TabIndex = 0;
             this.wbbYouTube.DocumentCompleted += new System.Windows.Forms.WebBrowserDocumentCompletedEventHandler(this.wbbYouTube_DocumentCompleted);
             // 
-            // lblCloseControls
-            // 
-            this.lblCloseControls.Location = new System.Drawing.Point(481, 4);
-            this.lblCloseControls.Name = "lblCloseControls";
-            this.lblCloseControls.Size = new System.Drawing.Size(12, 13);
-            this.lblCloseControls.TabIndex = 9;
-            this.lblCloseControls.Text = "-";
-            this.lblCloseControls.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.ttp.SetToolTip(this.lblCloseControls, "Hide this panel. It can be shown again by Window Menu.");
-            this.lblCloseControls.Click += new System.EventHandler(this.lblCloseControls_Click);
-            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(495, 271);
+            this.ControlBox = false;
             this.Controls.Add(this.wbbYouTube);
             this.Controls.Add(this.pnlTop);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -219,12 +254,13 @@
         private System.Windows.Forms.CheckBox chkKeepTopOn;
         private System.Windows.Forms.Timer timHider;
         private System.Windows.Forms.WebBrowser wbbYouTube;
+        private System.Windows.Forms.Button btnClose;
+        private System.Windows.Forms.Button btnMaximize;
+        private System.Windows.Forms.Button btnMinimize;
         private System.Windows.Forms.CheckBox chkShowBorder;
         private System.Windows.Forms.CheckBox chkKeepRatio;
         private System.Windows.Forms.CheckBox chkShowInTaskbar;
         private System.Windows.Forms.CheckBox chkMoveByMouse;
-        private System.Windows.Forms.ToolTip ttp;
-        private System.Windows.Forms.Label lblCloseControls;
     }
 }
 
