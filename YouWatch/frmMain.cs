@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Runtime.InteropServices;
@@ -11,6 +12,18 @@ namespace YouWatch
     public partial class frmMain : Form
     {
         #region Shortcut
+        const int WM_HOTKEY1 = 786;
+        const int WM_HOTKEY2 = 0x0312;
+
+        enum KeyModifier
+        {
+            None = 0,
+            Alt = 1,
+            Control = 2,
+            Shift = 4,
+            WinKey = 8
+        }
+
         [DllImport("user32.dll")]
         static extern bool GetCursorPos(ref Point lpPoint);
         // DLL libraries used to manage hotkeys
@@ -19,23 +32,27 @@ namespace YouWatch
         [DllImport("user32.dll")]
         public static extern bool UnregisterHotKey(IntPtr hWnd, int id);
 
-        const int ACTIVATOR_HOTKEY_ID = 1;
-
         protected override void WndProc(ref Message m)
         {
-            if (m.Msg == 0x0312 && m.WParam.ToInt32() == ACTIVATOR_HOTKEY_ID)
+            base.WndProc(ref m);
+
+            if (m.Msg == WM_HOTKEY2 || m.Msg == WM_HOTKEY2)
             {
-                this.Focus();
-                this.ActiveControl = wbbYouTube;
+                if (m.WParam.ToInt32() == (Int32)KeyModifier.Alt)
+                {
+                    Process currentProcess = Process.GetCurrentProcess();
+                    IntPtr hWnd = currentProcess.MainWindowHandle;
+
+                    SetForegroundWindow(hWnd);
+
+                    SetFocus(new HandleRef(null, hWnd));
+                }
             }
 
-            // Test if the About item was selected from the system menu
-            if ((m.Msg == WM_SYSCOMMAND) && ((int)m.WParam == SYSMENU_ABOUT_ID))
+            if ((m.Msg == WM_SYSCOMMAND) && ((int)m.WParam == SYSMENU_SHOW_HIDE_CONTROLS_ID))
             {
                 pnlTop.Visible = ControlsPanelVisible = !ControlsPanelVisible;
             }
-
-            base.WndProc(ref m);
         }
         #endregion
 
@@ -56,8 +73,18 @@ namespace YouWatch
         private static extern bool InsertMenu(IntPtr hMenu, int uPosition, int uFlags, int uIDNewItem, string lpNewItem);
 
 
-        // ID for the About item on the system menu
-        private int SYSMENU_ABOUT_ID = 0x1;
+        private int SYSMENU_SHOW_HIDE_CONTROLS_ID = 0x1;
+        #endregion
+
+        #region Focus
+        [DllImport("user32.dll")]
+        static extern bool SetForegroundWindow(IntPtr hWnd);
+
+        // SetFocus will just focus the keyboard on your application, but not bring your process to front.
+        // You don't need it here, SetForegroundWindow does the same.
+        // Just for documentation.
+        [DllImport("user32.dll")]
+        static extern IntPtr SetFocus(HandleRef hWnd);
         #endregion
 
         Size BeforeSize;
@@ -273,7 +300,7 @@ namespace YouWatch
             AppendMenu(hSysMenu, MF_SEPARATOR, 0, string.Empty);
 
             // Add the About menu item
-            AppendMenu(hSysMenu, MF_STRING, SYSMENU_ABOUT_ID, "Show/Hide Controls");
+            AppendMenu(hSysMenu, MF_STRING, SYSMENU_SHOW_HIDE_CONTROLS_ID, "Show/Hide Controls");
         }
 
         public frmMain()
@@ -288,7 +315,7 @@ namespace YouWatch
         }
         private void frmMain_Load(object sender, EventArgs e)
         {
-            RegisterHotKey(this.Handle, ACTIVATOR_HOTKEY_ID, 6, (int)Keys.Space);
+            RegisterHotKey(this.Handle, (Int32)KeyModifier.Alt, 1, (int)Keys.Space);
 
             txtURL.Text = ReadURLFromClipboard();
 
@@ -345,6 +372,10 @@ namespace YouWatch
             {
                 MoveForm();
             }
+        }
+        private void frmMain_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            UnregisterHotKey(this.Handle, 1);
         }
 
         private void lblURL_MouseClick(object sender, MouseEventArgs e)

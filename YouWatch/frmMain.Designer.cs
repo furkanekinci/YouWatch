@@ -32,6 +32,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
             this.txtURL = new System.Windows.Forms.TextBox();
             this.pnlTop = new System.Windows.Forms.Panel();
+            this.trkBar_Opacity = new System.Windows.Forms.TrackBar();
             this.lblCloseControls = new System.Windows.Forms.Label();
             this.chkMoveByMouse = new System.Windows.Forms.CheckBox();
             this.chkShowBorder = new System.Windows.Forms.CheckBox();
@@ -43,7 +44,6 @@
             this.timHider = new System.Windows.Forms.Timer(this.components);
             this.wbbYouTube = new System.Windows.Forms.WebBrowser();
             this.ttp = new System.Windows.Forms.ToolTip(this.components);
-            this.trkBar_Opacity = new System.Windows.Forms.TrackBar();
             this.pnlTop.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trkBar_Opacity)).BeginInit();
             this.SuspendLayout();
@@ -56,7 +56,7 @@
             this.txtURL.Location = new System.Drawing.Point(48, 6);
             this.txtURL.Name = "txtURL";
             this.txtURL.Size = new System.Drawing.Size(378, 29);
-            this.txtURL.TabIndex = 1;
+            this.txtURL.TabIndex = 0;
             this.txtURL.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtURL_KeyDown);
             // 
             // pnlTop
@@ -75,7 +75,22 @@
             this.pnlTop.Location = new System.Drawing.Point(0, 0);
             this.pnlTop.Name = "pnlTop";
             this.pnlTop.Size = new System.Drawing.Size(481, 88);
-            this.pnlTop.TabIndex = 2;
+            this.pnlTop.TabIndex = 1;
+            // 
+            // trkBar_Opacity
+            // 
+            this.trkBar_Opacity.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.trkBar_Opacity.AutoSize = false;
+            this.trkBar_Opacity.Location = new System.Drawing.Point(12, 60);
+            this.trkBar_Opacity.Maximum = 100;
+            this.trkBar_Opacity.Minimum = 20;
+            this.trkBar_Opacity.Name = "trkBar_Opacity";
+            this.trkBar_Opacity.Size = new System.Drawing.Size(457, 23);
+            this.trkBar_Opacity.TabIndex = 7;
+            this.trkBar_Opacity.TickStyle = System.Windows.Forms.TickStyle.TopLeft;
+            this.trkBar_Opacity.Value = 100;
+            this.trkBar_Opacity.Scroll += new System.EventHandler(this.trkBar_Opacity_Scroll);
             // 
             // lblCloseControls
             // 
@@ -108,7 +123,7 @@
             this.chkShowBorder.Location = new System.Drawing.Point(12, 38);
             this.chkShowBorder.Name = "chkShowBorder";
             this.chkShowBorder.Size = new System.Drawing.Size(87, 17);
-            this.chkShowBorder.TabIndex = 4;
+            this.chkShowBorder.TabIndex = 2;
             this.chkShowBorder.Text = "Show Border";
             this.chkShowBorder.UseVisualStyleBackColor = true;
             this.chkShowBorder.CheckedChanged += new System.EventHandler(this.chkShowBorder_CheckedChanged);
@@ -119,7 +134,7 @@
             this.chkShowInTaskbar.Location = new System.Drawing.Point(105, 38);
             this.chkShowInTaskbar.Name = "chkShowInTaskbar";
             this.chkShowInTaskbar.Size = new System.Drawing.Size(106, 17);
-            this.chkShowInTaskbar.TabIndex = 4;
+            this.chkShowInTaskbar.TabIndex = 3;
             this.chkShowInTaskbar.Text = "Show in Taskbar";
             this.chkShowInTaskbar.UseVisualStyleBackColor = true;
             this.chkShowInTaskbar.CheckedChanged += new System.EventHandler(this.chkShowInTaskbar_CheckedChanged);
@@ -130,7 +145,7 @@
             this.chkKeepRatio.Location = new System.Drawing.Point(296, 38);
             this.chkKeepRatio.Name = "chkKeepRatio";
             this.chkKeepRatio.Size = new System.Drawing.Size(79, 17);
-            this.chkKeepRatio.TabIndex = 4;
+            this.chkKeepRatio.TabIndex = 5;
             this.chkKeepRatio.Text = "Keep Ratio";
             this.chkKeepRatio.UseVisualStyleBackColor = true;
             this.chkKeepRatio.CheckedChanged += new System.EventHandler(this.chkKeepRatio_CheckedChanged);
@@ -155,7 +170,7 @@
             this.btnGO.Location = new System.Drawing.Point(426, 6);
             this.btnGO.Name = "btnGO";
             this.btnGO.Size = new System.Drawing.Size(35, 29);
-            this.btnGO.TabIndex = 3;
+            this.btnGO.TabIndex = 1;
             this.btnGO.Text = "GO";
             this.btnGO.UseVisualStyleBackColor = true;
             this.btnGO.Click += new System.EventHandler(this.btnGO_Click);
@@ -189,21 +204,6 @@
             this.wbbYouTube.TabIndex = 0;
             this.wbbYouTube.DocumentCompleted += new System.Windows.Forms.WebBrowserDocumentCompletedEventHandler(this.wbbYouTube_DocumentCompleted);
             // 
-            // trkBar_Opacity
-            // 
-            this.trkBar_Opacity.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.trkBar_Opacity.AutoSize = false;
-            this.trkBar_Opacity.Location = new System.Drawing.Point(12, 60);
-            this.trkBar_Opacity.Maximum = 100;
-            this.trkBar_Opacity.Minimum = 20;
-            this.trkBar_Opacity.Name = "trkBar_Opacity";
-            this.trkBar_Opacity.Size = new System.Drawing.Size(457, 23);
-            this.trkBar_Opacity.TabIndex = 10;
-            this.trkBar_Opacity.TickStyle = System.Windows.Forms.TickStyle.TopLeft;
-            this.trkBar_Opacity.Value = 100;
-            this.trkBar_Opacity.Scroll += new System.EventHandler(this.trkBar_Opacity_Scroll);
-            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -214,10 +214,10 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
             this.Name = "frmMain";
-            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "YouWatch";
             this.TopMost = true;
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmMain_FormClosing);
             this.Load += new System.EventHandler(this.frmMain_Load);
             this.ResizeBegin += new System.EventHandler(this.frmMain_ResizeBegin);
             this.ResizeEnd += new System.EventHandler(this.frmMain_ResizeEnd);
