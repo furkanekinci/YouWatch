@@ -467,6 +467,11 @@ namespace YouWatch
 
         private void btnGO_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrEmpty(txtURL.Text.Trim()))
+            {
+                txtURL.Text = ReadURLFromClipboard();
+            }
+
             ShowVideo(txtURL.Text);
         }
 

@@ -89,6 +89,7 @@
             this.trkBar_Opacity.Size = new System.Drawing.Size(457, 23);
             this.trkBar_Opacity.TabIndex = 7;
             this.trkBar_Opacity.TickStyle = System.Windows.Forms.TickStyle.TopLeft;
+            this.ttp.SetToolTip(this.trkBar_Opacity, "Change form\'s opacity.");
             this.trkBar_Opacity.Value = 100;
             this.trkBar_Opacity.Scroll += new System.EventHandler(this.trkBar_Opacity_Scroll);
             // 
@@ -131,6 +132,8 @@
             // chkShowInTaskbar
             // 
             this.chkShowInTaskbar.AutoSize = true;
+            this.chkShowInTaskbar.Checked = true;
+            this.chkShowInTaskbar.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkShowInTaskbar.Location = new System.Drawing.Point(105, 38);
             this.chkShowInTaskbar.Name = "chkShowInTaskbar";
             this.chkShowInTaskbar.Size = new System.Drawing.Size(106, 17);
