@@ -58,6 +58,7 @@
             this.txtURL.Size = new System.Drawing.Size(378, 29);
             this.txtURL.TabIndex = 0;
             this.txtURL.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtURL_KeyDown);
+            this.txtURL.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.txtURL_MouseDoubleClick);
             // 
             // pnlTop
             // 
@@ -91,7 +92,7 @@
             this.trkBar_Opacity.TickStyle = System.Windows.Forms.TickStyle.TopLeft;
             this.ttp.SetToolTip(this.trkBar_Opacity, "Change form\'s opacity.");
             this.trkBar_Opacity.Value = 100;
-            this.trkBar_Opacity.Scroll += new System.EventHandler(this.trkBar_Opacity_Scroll);
+            this.trkBar_Opacity.ValueChanged += new System.EventHandler(this.trkBar_Opacity_ValueChanged);
             // 
             // lblCloseControls
             // 

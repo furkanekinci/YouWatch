@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text.RegularExpressions;
@@ -52,6 +53,15 @@ namespace YouWatch
             if ((m.Msg == WM_SYSCOMMAND) && ((int)m.WParam == SYSMENU_SHOW_HIDE_CONTROLS_ID))
             {
                 pnlTop.Visible = ControlsPanelVisible = !ControlsPanelVisible;
+
+                if (pnlTop.Visible)
+                {
+                    this.Height = this.Height + pnlTop.Height; 
+                }
+                else
+                {
+                    this.Height = this.Height - pnlTop.Height;
+                }                
             }
         }
         #endregion
@@ -87,6 +97,8 @@ namespace YouWatch
         static extern IntPtr SetFocus(HandleRef hWnd);
         #endregion
 
+        private string LastSessionFilePath = "LastSession.dat";
+
         Size BeforeSize;
 
         double Ratio = 0;
@@ -103,11 +115,79 @@ namespace YouWatch
         string YoutubeURLPattern = "https://www.youtube.com/embed/{0}?";
         string EmbedCodePattern = "<html><head><meta http-equiv='X-UA-Compatible' content='IE=edge'><style>*{margin:0px;padding:0px;}</style></head><iframe style='position:absolute; left:0; top:0; width:100%; height:100%' src='@URL@&autoplay=1&showinfo=1&controls=1&autohide=1' frameborder='0' allowfullscreen></iframe></html>";
 
+        private void LoadLastSession()
+        {
+            if (File.Exists(this.LastSessionFilePath))
+            {
+                try
+                {
+                    string lastSession = File.ReadAllText(this.LastSessionFilePath);
+
+                    string[] settings = lastSession.Split('#');
+                    string controlName = string.Empty;
+                    object value = null;
+
+                    for (int i = 0; i < settings.Length; i++)
+                    {
+                        try
+                        {
+                            controlName = settings[i].Split('|')[0];
+                            value = settings[i].Split('|')[1];
+
+                            Control cont = this.Controls.Find(controlName, true)[0];
+
+                            if (cont.GetType() == typeof(TextBox))
+                            {
+                                (cont as TextBox).Text = Convert.ToString(value);
+                            }
+                            else if (cont.GetType() == typeof(CheckBox))
+                            {
+                                (cont as CheckBox).Checked = Convert.ToBoolean(value);
+                            }
+                            else if (cont.GetType() == typeof(TrackBar))
+                            {
+                                (cont as TrackBar).Value = Convert.ToInt32(value);
+                            }
+                        }
+                        catch
+                        {
+
+                        }
+                    }
+                }
+                catch
+                {
+                }
+            }
+        }
+        private void SaveSession()
+        {
+            try
+            {
+                string settings = string.Empty;
+                settings += string.Format("{0}|{1}#", txtURL.Name, txtURL.Text);
+                settings += string.Format("{0}|{1}#", chkShowBorder.Name, chkShowBorder.Checked);
+                settings += string.Format("{0}|{1}#", chkShowInTaskbar.Name, chkShowInTaskbar.Checked);
+                settings += string.Format("{0}|{1}#", chkKeepTopOn.Name, chkKeepTopOn.Checked);
+                settings += string.Format("{0}|{1}#", chkKeepRatio.Name, chkKeepRatio.Checked);
+                settings += string.Format("{0}|{1}#", chkMoveByMouse.Name, chkMoveByMouse.Checked);
+                settings += string.Format("{0}|{1}#", trkBar_Opacity.Name, trkBar_Opacity.Value);
+
+                File.WriteAllText(this.LastSessionFilePath, settings);
+            }
+            catch
+            {
+
+            }
+        }
+
         private void ShowControls()
         {
-            if (this.ControlsPanelVisible)
+            if (this.ControlsPanelVisible && !pnlTop.Visible)
             {
                 pnlTop.Visible = true;
+
+                this.Height = this.Height + pnlTop.Height;
             }
 
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Sizable;
@@ -129,7 +209,13 @@ namespace YouWatch
         }
         private void HideControls()
         {
-            pnlTop.Visible = false;
+            if (pnlTop.Visible)
+            {
+                pnlTop.Visible = false;
+
+                this.Height = this.Height - pnlTop.Height;
+            }
+
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
 
             timCounter = 0;
@@ -211,8 +297,18 @@ namespace YouWatch
 
                     string embedCode = GenerateEmbedCode(pURL);
 
-                    wbbYouTube.DocumentText = "<html>" + embedCode + "</html>";
+                    if (!embedCode.Trim().StartsWith("<html>"))
+                    {
+                        wbbYouTube.DocumentText = "<html>" + embedCode + "</html>";
+                    }
+                    else
+                    {
+                        wbbYouTube.DocumentText = embedCode;
+                    }
+
                     wbbYouTube.ScriptErrorsSuppressed = true;
+
+                    this.SaveSession();
                 }
                 else
                 {
@@ -317,7 +413,12 @@ namespace YouWatch
         {
             RegisterHotKey(this.Handle, (Int32)KeyModifier.Alt, 1, (int)Keys.Space);
 
-            txtURL.Text = ReadURLFromClipboard();
+            LoadLastSession();
+
+            if (string.IsNullOrEmpty(txtURL.Text))
+            {
+                txtURL.Text = ReadURLFromClipboard();
+            }
 
             ShowVideo(txtURL.Text);
         }
@@ -375,6 +476,7 @@ namespace YouWatch
         }
         private void frmMain_FormClosing(object sender, FormClosingEventArgs e)
         {
+            SaveSession();
             UnregisterHotKey(this.Handle, 1);
         }
 
@@ -463,6 +565,7 @@ namespace YouWatch
         private void lblCloseControls_Click(object sender, EventArgs e)
         {
             pnlTop.Visible = ControlsPanelVisible = false;
+            this.Height = this.Height - pnlTop.Height;
         }
 
         private void btnGO_Click(object sender, EventArgs e)
@@ -487,7 +590,15 @@ namespace YouWatch
             }
         }
 
-        private void trkBar_Opacity_Scroll(object sender, EventArgs e)
+        private void txtURL_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                txtURL.Text = ReadURLFromClipboard();
+            }
+        }
+
+        private void trkBar_Opacity_ValueChanged(object sender, EventArgs e)
         {
             this.Opacity = trkBar_Opacity.Value / (double)100;
         }
