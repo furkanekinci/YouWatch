@@ -101,8 +101,6 @@ namespace YouWatch
 
         Size BeforeSize;
 
-        double Ratio = 0;
-
         int timCounter = 0;
 
         bool KeepRatio = false;
@@ -178,6 +176,32 @@ namespace YouWatch
             catch
             {
 
+            }
+        }
+
+        private void SetRatio()
+        {
+            if (this.ControlsPanelVisible)
+            {
+                if (this.Height != this.BeforeSize.Height)
+                {
+                    this.Width = Convert.ToInt32((this.Height - 120) * 1.78M);
+                }
+                else if (this.Width != this.BeforeSize.Width)
+                {
+                    this.Height = Convert.ToInt32((this.Width / 1.78M) + 120);
+                }
+            }
+            else
+            {
+                if (this.Height != this.BeforeSize.Height)
+                {
+                    this.Width = Convert.ToInt32((this.Height - 34) * 1.78M);
+                }
+                else if (this.Width != this.BeforeSize.Width)
+                {
+                    this.Height = Convert.ToInt32((this.Width / 1.78M) + 34);
+                }
             }
         }
 
@@ -442,22 +466,7 @@ namespace YouWatch
 
             if (this.IsResized && this.KeepRatio)
             {
-                if (this.Height > this.BeforeSize.Height)
-                {
-                    this.Width = this.Width + Convert.ToInt32(this.Width * (1 - this.Ratio));
-                }
-                else if (this.Width > this.BeforeSize.Width)
-                {
-                    this.Height = this.Height + Convert.ToInt32(this.Height * (1 - this.Ratio));
-                }
-                else if (this.Height < this.BeforeSize.Height)
-                {
-                    this.Width = this.Width - Convert.ToInt32(this.Width * (1 - this.Ratio));
-                }
-                else if (this.Width < this.BeforeSize.Width)
-                {
-                    this.Height = this.Height - Convert.ToInt32(this.Height * (1 - this.Ratio));
-                }
+                SetRatio();
             }
 
             this.IsResized = false;
@@ -518,9 +527,12 @@ namespace YouWatch
         }
         private void chkKeepRatio_CheckedChanged(object sender, EventArgs e)
         {
-            this.Ratio = Convert.ToDouble(this.Height) / Convert.ToDouble(this.Width);
-
             this.KeepRatio = chkKeepRatio.Checked;
+
+            if (this.KeepRatio)
+            {
+                this.SetRatio();
+            }
         }
 
         private void timHider_Tick(object sender, EventArgs e)
