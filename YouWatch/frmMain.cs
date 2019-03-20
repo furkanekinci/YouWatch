@@ -56,12 +56,12 @@ namespace YouWatch
 
                 if (pnlTop.Visible)
                 {
-                    this.Height = this.Height + pnlTop.Height; 
+                    this.Height = this.Height + pnlTop.Height;
                 }
                 else
                 {
                     this.Height = this.Height - pnlTop.Height;
-                }                
+                }
             }
         }
         #endregion
@@ -187,6 +187,8 @@ namespace YouWatch
             {
                 pnlTop.Visible = true;
 
+                this.Left = this.Left - 8;
+                this.Top = this.Top - pnlTop.Height - 32;
                 this.Height = this.Height + pnlTop.Height;
             }
 
@@ -213,6 +215,8 @@ namespace YouWatch
             {
                 pnlTop.Visible = false;
 
+                this.Left = this.Left + 8;
+                this.Top = this.Top + pnlTop.Height + 32;
                 this.Height = this.Height - pnlTop.Height;
             }
 
