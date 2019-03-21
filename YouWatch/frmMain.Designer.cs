@@ -33,12 +33,15 @@
             this.txtURL = new System.Windows.Forms.TextBox();
             this.pnlTop = new System.Windows.Forms.Panel();
             this.trkBar_Opacity = new System.Windows.Forms.TrackBar();
-            this.lblCloseControls = new System.Windows.Forms.Label();
             this.chkMoveByMouse = new System.Windows.Forms.CheckBox();
             this.chkShowBorder = new System.Windows.Forms.CheckBox();
             this.chkShowInTaskbar = new System.Windows.Forms.CheckBox();
             this.chkKeepRatio = new System.Windows.Forms.CheckBox();
             this.chkKeepTopOn = new System.Windows.Forms.CheckBox();
+            this.btnClose = new System.Windows.Forms.Button();
+            this.btnMaximize = new System.Windows.Forms.Button();
+            this.btnHideControls = new System.Windows.Forms.Button();
+            this.btnMinimize = new System.Windows.Forms.Button();
             this.btnGO = new System.Windows.Forms.Button();
             this.lblURL = new System.Windows.Forms.Label();
             this.timHider = new System.Windows.Forms.Timer(this.components);
@@ -53,9 +56,9 @@
             this.txtURL.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtURL.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.txtURL.Location = new System.Drawing.Point(48, 6);
+            this.txtURL.Location = new System.Drawing.Point(45, 6);
             this.txtURL.Name = "txtURL";
-            this.txtURL.Size = new System.Drawing.Size(378, 29);
+            this.txtURL.Size = new System.Drawing.Size(446, 29);
             this.txtURL.TabIndex = 0;
             this.txtURL.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtURL_KeyDown);
             this.txtURL.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.txtURL_MouseDoubleClick);
@@ -63,20 +66,24 @@
             // pnlTop
             // 
             this.pnlTop.Controls.Add(this.trkBar_Opacity);
-            this.pnlTop.Controls.Add(this.lblCloseControls);
             this.pnlTop.Controls.Add(this.chkMoveByMouse);
             this.pnlTop.Controls.Add(this.chkShowBorder);
             this.pnlTop.Controls.Add(this.chkShowInTaskbar);
             this.pnlTop.Controls.Add(this.chkKeepRatio);
             this.pnlTop.Controls.Add(this.chkKeepTopOn);
+            this.pnlTop.Controls.Add(this.btnClose);
+            this.pnlTop.Controls.Add(this.btnMaximize);
+            this.pnlTop.Controls.Add(this.btnHideControls);
+            this.pnlTop.Controls.Add(this.btnMinimize);
             this.pnlTop.Controls.Add(this.btnGO);
             this.pnlTop.Controls.Add(this.lblURL);
             this.pnlTop.Controls.Add(this.txtURL);
             this.pnlTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlTop.Location = new System.Drawing.Point(0, 0);
             this.pnlTop.Name = "pnlTop";
-            this.pnlTop.Size = new System.Drawing.Size(481, 88);
+            this.pnlTop.Size = new System.Drawing.Size(621, 88);
             this.pnlTop.TabIndex = 1;
+            this.pnlTop.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pnlTop_MouseMove);
             // 
             // trkBar_Opacity
             // 
@@ -87,24 +94,12 @@
             this.trkBar_Opacity.Maximum = 100;
             this.trkBar_Opacity.Minimum = 20;
             this.trkBar_Opacity.Name = "trkBar_Opacity";
-            this.trkBar_Opacity.Size = new System.Drawing.Size(457, 23);
+            this.trkBar_Opacity.Size = new System.Drawing.Size(597, 23);
             this.trkBar_Opacity.TabIndex = 7;
             this.trkBar_Opacity.TickStyle = System.Windows.Forms.TickStyle.TopLeft;
             this.ttp.SetToolTip(this.trkBar_Opacity, "Change form\'s opacity.");
             this.trkBar_Opacity.Value = 100;
             this.trkBar_Opacity.ValueChanged += new System.EventHandler(this.trkBar_Opacity_ValueChanged);
-            // 
-            // lblCloseControls
-            // 
-            this.lblCloseControls.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblCloseControls.Location = new System.Drawing.Point(467, 4);
-            this.lblCloseControls.Name = "lblCloseControls";
-            this.lblCloseControls.Size = new System.Drawing.Size(12, 13);
-            this.lblCloseControls.TabIndex = 9;
-            this.lblCloseControls.Text = "-";
-            this.lblCloseControls.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.ttp.SetToolTip(this.lblCloseControls, "Hide this panel. It can be shown again by Window Menu.");
-            this.lblCloseControls.Click += new System.EventHandler(this.lblCloseControls_Click);
             // 
             // chkMoveByMouse
             // 
@@ -167,15 +162,67 @@
             this.chkKeepTopOn.UseVisualStyleBackColor = true;
             this.chkKeepTopOn.CheckedChanged += new System.EventHandler(this.chkKeepTopOn_CheckedChanged);
             // 
+            // btnClose
+            // 
+            this.btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnClose.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.btnClose.Location = new System.Drawing.Point(596, 6);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(23, 20);
+            this.btnClose.TabIndex = 1;
+            this.btnClose.Text = "⛝";
+            this.btnClose.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+            // 
+            // btnMaximize
+            // 
+            this.btnMaximize.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnMaximize.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.btnMaximize.Location = new System.Drawing.Point(573, 6);
+            this.btnMaximize.Name = "btnMaximize";
+            this.btnMaximize.Size = new System.Drawing.Size(23, 20);
+            this.btnMaximize.TabIndex = 1;
+            this.btnMaximize.Text = "↗";
+            this.btnMaximize.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnMaximize.UseVisualStyleBackColor = true;
+            this.btnMaximize.Click += new System.EventHandler(this.btnMaximize_Click);
+            // 
+            // btnHideControls
+            // 
+            this.btnHideControls.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnHideControls.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.btnHideControls.Location = new System.Drawing.Point(527, 6);
+            this.btnHideControls.Name = "btnHideControls";
+            this.btnHideControls.Size = new System.Drawing.Size(23, 20);
+            this.btnHideControls.TabIndex = 1;
+            this.btnHideControls.Text = "▲";
+            this.btnHideControls.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnHideControls.UseVisualStyleBackColor = true;
+            this.btnHideControls.Click += new System.EventHandler(this.btnHideControls_Click);
+            // 
+            // btnMinimize
+            // 
+            this.btnMinimize.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnMinimize.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.btnMinimize.Location = new System.Drawing.Point(550, 6);
+            this.btnMinimize.Name = "btnMinimize";
+            this.btnMinimize.Size = new System.Drawing.Size(23, 20);
+            this.btnMinimize.TabIndex = 1;
+            this.btnMinimize.Text = "↙";
+            this.btnMinimize.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnMinimize.UseVisualStyleBackColor = true;
+            this.btnMinimize.Click += new System.EventHandler(this.btnMinimize_Click);
+            // 
             // btnGO
             // 
             this.btnGO.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnGO.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.btnGO.Location = new System.Drawing.Point(426, 6);
+            this.btnGO.Location = new System.Drawing.Point(491, 6);
             this.btnGO.Name = "btnGO";
             this.btnGO.Size = new System.Drawing.Size(35, 29);
             this.btnGO.TabIndex = 1;
-            this.btnGO.Text = "GO";
+            this.btnGO.Text = "📺";
             this.btnGO.UseVisualStyleBackColor = true;
             this.btnGO.Click += new System.EventHandler(this.btnGO_Click);
             // 
@@ -204,7 +251,7 @@
             this.wbbYouTube.MinimumSize = new System.Drawing.Size(20, 20);
             this.wbbYouTube.Name = "wbbYouTube";
             this.wbbYouTube.ScrollBarsEnabled = false;
-            this.wbbYouTube.Size = new System.Drawing.Size(481, 183);
+            this.wbbYouTube.Size = new System.Drawing.Size(621, 287);
             this.wbbYouTube.TabIndex = 0;
             this.wbbYouTube.DocumentCompleted += new System.Windows.Forms.WebBrowserDocumentCompletedEventHandler(this.wbbYouTube_DocumentCompleted);
             // 
@@ -212,7 +259,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(481, 271);
+            this.ClientSize = new System.Drawing.Size(621, 375);
             this.Controls.Add(this.wbbYouTube);
             this.Controls.Add(this.pnlTop);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -225,6 +272,7 @@
             this.Load += new System.EventHandler(this.frmMain_Load);
             this.ResizeBegin += new System.EventHandler(this.frmMain_ResizeBegin);
             this.ResizeEnd += new System.EventHandler(this.frmMain_ResizeEnd);
+            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.frmMain_MouseDown);
             this.MouseEnter += new System.EventHandler(this.frmMain_MouseEnter);
             this.Resize += new System.EventHandler(this.frmMain_Resize);
             this.pnlTop.ResumeLayout(false);
@@ -238,7 +286,6 @@
 
         private System.Windows.Forms.TextBox txtURL;
         private System.Windows.Forms.Panel pnlTop;
-        private System.Windows.Forms.Label lblURL;
         private System.Windows.Forms.Button btnGO;
         private System.Windows.Forms.CheckBox chkKeepTopOn;
         private System.Windows.Forms.Timer timHider;
@@ -248,8 +295,12 @@
         private System.Windows.Forms.CheckBox chkShowInTaskbar;
         private System.Windows.Forms.CheckBox chkMoveByMouse;
         private System.Windows.Forms.ToolTip ttp;
-        private System.Windows.Forms.Label lblCloseControls;
         private System.Windows.Forms.TrackBar trkBar_Opacity;
+        private System.Windows.Forms.Label lblURL;
+        private System.Windows.Forms.Button btnClose;
+        private System.Windows.Forms.Button btnMaximize;
+        private System.Windows.Forms.Button btnHideControls;
+        private System.Windows.Forms.Button btnMinimize;
     }
 }
 
