@@ -55,6 +55,7 @@
             // 
             this.txtURL.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtURL.Cursor = System.Windows.Forms.Cursors.Default;
             this.txtURL.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.txtURL.Location = new System.Drawing.Point(45, 6);
             this.txtURL.Name = "txtURL";
@@ -78,6 +79,7 @@
             this.pnlTop.Controls.Add(this.btnGO);
             this.pnlTop.Controls.Add(this.lblURL);
             this.pnlTop.Controls.Add(this.txtURL);
+            this.pnlTop.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pnlTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlTop.Location = new System.Drawing.Point(0, 0);
             this.pnlTop.Name = "pnlTop";
@@ -90,6 +92,7 @@
             this.trkBar_Opacity.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.trkBar_Opacity.AutoSize = false;
+            this.trkBar_Opacity.Cursor = System.Windows.Forms.Cursors.Default;
             this.trkBar_Opacity.Location = new System.Drawing.Point(12, 60);
             this.trkBar_Opacity.Maximum = 100;
             this.trkBar_Opacity.Minimum = 20;
@@ -104,6 +107,7 @@
             // chkMoveByMouse
             // 
             this.chkMoveByMouse.AutoSize = true;
+            this.chkMoveByMouse.Cursor = System.Windows.Forms.Cursors.Default;
             this.chkMoveByMouse.Enabled = false;
             this.chkMoveByMouse.Location = new System.Drawing.Point(376, 38);
             this.chkMoveByMouse.Name = "chkMoveByMouse";
@@ -117,6 +121,7 @@
             this.chkShowBorder.AutoSize = true;
             this.chkShowBorder.Checked = true;
             this.chkShowBorder.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkShowBorder.Cursor = System.Windows.Forms.Cursors.Default;
             this.chkShowBorder.Location = new System.Drawing.Point(12, 38);
             this.chkShowBorder.Name = "chkShowBorder";
             this.chkShowBorder.Size = new System.Drawing.Size(87, 17);
@@ -130,6 +135,7 @@
             this.chkShowInTaskbar.AutoSize = true;
             this.chkShowInTaskbar.Checked = true;
             this.chkShowInTaskbar.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkShowInTaskbar.Cursor = System.Windows.Forms.Cursors.Default;
             this.chkShowInTaskbar.Location = new System.Drawing.Point(105, 38);
             this.chkShowInTaskbar.Name = "chkShowInTaskbar";
             this.chkShowInTaskbar.Size = new System.Drawing.Size(106, 17);
@@ -141,6 +147,7 @@
             // chkKeepRatio
             // 
             this.chkKeepRatio.AutoSize = true;
+            this.chkKeepRatio.Cursor = System.Windows.Forms.Cursors.Default;
             this.chkKeepRatio.Location = new System.Drawing.Point(296, 38);
             this.chkKeepRatio.Name = "chkKeepRatio";
             this.chkKeepRatio.Size = new System.Drawing.Size(79, 17);
@@ -154,6 +161,7 @@
             this.chkKeepTopOn.AutoSize = true;
             this.chkKeepTopOn.Checked = true;
             this.chkKeepTopOn.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkKeepTopOn.Cursor = System.Windows.Forms.Cursors.Default;
             this.chkKeepTopOn.Location = new System.Drawing.Point(217, 38);
             this.chkKeepTopOn.Name = "chkKeepTopOn";
             this.chkKeepTopOn.Size = new System.Drawing.Size(73, 17);
@@ -165,6 +173,7 @@
             // btnClose
             // 
             this.btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnClose.Cursor = System.Windows.Forms.Cursors.Default;
             this.btnClose.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.btnClose.Location = new System.Drawing.Point(596, 6);
             this.btnClose.Name = "btnClose";
@@ -178,6 +187,7 @@
             // btnMaximize
             // 
             this.btnMaximize.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnMaximize.Cursor = System.Windows.Forms.Cursors.Default;
             this.btnMaximize.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.btnMaximize.Location = new System.Drawing.Point(573, 6);
             this.btnMaximize.Name = "btnMaximize";
@@ -191,6 +201,7 @@
             // btnHideControls
             // 
             this.btnHideControls.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnHideControls.Cursor = System.Windows.Forms.Cursors.Default;
             this.btnHideControls.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.btnHideControls.Location = new System.Drawing.Point(527, 6);
             this.btnHideControls.Name = "btnHideControls";
@@ -204,6 +215,7 @@
             // btnMinimize
             // 
             this.btnMinimize.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnMinimize.Cursor = System.Windows.Forms.Cursors.Default;
             this.btnMinimize.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.btnMinimize.Location = new System.Drawing.Point(550, 6);
             this.btnMinimize.Name = "btnMinimize";
@@ -217,6 +229,7 @@
             // btnGO
             // 
             this.btnGO.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnGO.Cursor = System.Windows.Forms.Cursors.Default;
             this.btnGO.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.btnGO.Location = new System.Drawing.Point(491, 6);
             this.btnGO.Name = "btnGO";
@@ -229,7 +242,7 @@
             // lblURL
             // 
             this.lblURL.AutoSize = true;
-            this.lblURL.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lblURL.Cursor = System.Windows.Forms.Cursors.Default;
             this.lblURL.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.lblURL.Location = new System.Drawing.Point(9, 12);
             this.lblURL.Name = "lblURL";

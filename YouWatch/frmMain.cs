@@ -221,12 +221,19 @@ namespace YouWatch
             {
                 pnlTop.Visible = true;
 
-                this.Left = this.Left - 8;
-                this.Top = this.Top - pnlTop.Height - 32;
-                this.Height = this.Height + pnlTop.Height;
-            }
+                if (this.FormBorderStyle == FormBorderStyle.Sizable)
+                {
+                    this.Left = this.Left - 8;
 
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Sizable;
+                    this.Top = this.Top - pnlTop.Height - 32;
+                    this.Height = this.Height + pnlTop.Height;
+                }
+                else
+                {
+                    this.Top = this.Top - pnlTop.Height;
+                    this.Height = this.Height + pnlTop.Height;
+                }
+            }
 
             if (!chkShowBorder.Checked)
             {
@@ -249,9 +256,19 @@ namespace YouWatch
             {
                 pnlTop.Visible = false;
 
-                this.Left = this.Left + 8;
-                this.Top = this.Top + pnlTop.Height + 32;
-                this.Height = this.Height - pnlTop.Height;
+                if (this.FormBorderStyle == FormBorderStyle.Sizable)
+                {
+                    this.Left = this.Left + 8;
+
+                    this.Top = this.Top + pnlTop.Height + 32;
+                    this.Height = this.Height - pnlTop.Height;
+                }
+                else
+                {
+
+                    this.Top = this.Top + pnlTop.Height;
+                    this.Height = this.Height - pnlTop.Height;
+                }
             }
 
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -522,6 +539,11 @@ namespace YouWatch
         {
             if (chkShowBorder.Checked)
             {
+                this.Top -= 27;
+                this.Left -= 8;
+
+                this.FormBorderStyle = FormBorderStyle.Sizable;
+
                 ShowControls();
 
                 chkMoveByMouse.Checked = chkMoveByMouse.Enabled = false;
@@ -530,6 +552,11 @@ namespace YouWatch
             }
             else
             {
+                this.Top += 27;
+                this.Left += 8;
+
+                this.FormBorderStyle = FormBorderStyle.None;
+
                 chkMoveByMouse.Enabled = true;
 
                 this.ShowBorder = false;
@@ -648,12 +675,19 @@ namespace YouWatch
 
         private void btnClose_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            this.Close();
         }
 
         private void btnMaximize_Click(object sender, EventArgs e)
         {
-            this.WindowState = FormWindowState.Maximized;
+            if (this.WindowState == FormWindowState.Maximized)
+            {
+                this.WindowState = FormWindowState.Normal;
+            }
+            else
+            {
+                this.WindowState = FormWindowState.Maximized;
+            }
         }
 
         private void btnMinimize_Click(object sender, EventArgs e)
