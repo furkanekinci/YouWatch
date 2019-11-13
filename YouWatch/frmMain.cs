@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MessagingToolkit.QRCode.Codec;
+using System;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
@@ -255,6 +256,7 @@ namespace YouWatch
             if (pnlTop.Visible)
             {
                 pnlTop.Visible = false;
+                picBarcode.Visible = false;
 
                 if (this.FormBorderStyle == FormBorderStyle.Sizable)
                 {
@@ -454,6 +456,29 @@ namespace YouWatch
             AppendMenu(hSysMenu, MF_STRING, SYSMENU_SHOW_HIDE_CONTROLS_ID, "Show/Hide Controls");
         }
 
+        private Bitmap GenerateQRCode(string pContent, int pScale = 3)
+        {
+            QRCodeEncoder qrCE = new QRCodeEncoder();
+            qrCE.QRCodeEncodeMode = QRCodeEncoder.ENCODE_MODE.BYTE;
+            qrCE.QRCodeErrorCorrect = QRCodeEncoder.ERROR_CORRECTION.L;
+            qrCE.QRCodeVersion = 0;
+            qrCE.QRCodeScale = pScale;
+
+            return qrCE.Encode(pContent, System.Text.Encoding.UTF8);
+        }
+        private void ShowBarcode()
+        {
+            picBarcode.Left = (this.Width - picBarcode.Width) / 2;
+            picBarcode.Top = (this.Height - picBarcode.Height) / 2;
+            picBarcode.Visible = true;
+            picBarcode.Image = GenerateQRCode(txtURL.Text, 3);
+            picBarcode.SizeMode = PictureBoxSizeMode.CenterImage;
+        }
+        private void HideBarcode()
+        {
+            picBarcode.Visible = false;
+        }
+
         public frmMain()
         {
             GlobalMouseHandler gmh = new GlobalMouseHandler();
@@ -534,6 +559,18 @@ namespace YouWatch
 
             ShowVideo(txtURL.Text);
         }
+        private void lblURL_MouseEnter(object sender, EventArgs e)
+        {
+            this.ShowBarcode();
+        }
+        private void lblURL_MouseHover(object sender, EventArgs e)
+        {
+            this.ShowBarcode();
+        }
+        private void lblURL_MouseLeave(object sender, EventArgs e)
+        {
+            this.HideBarcode();
+        }
 
         private void chkShowBorder_CheckedChanged(object sender, EventArgs e)
         {
@@ -547,6 +584,8 @@ namespace YouWatch
                 ShowControls();
 
                 chkMoveByMouse.Checked = chkMoveByMouse.Enabled = false;
+
+                picBarcode.Visible = false;
 
                 this.ShowBorder = true;
             }
@@ -621,6 +660,10 @@ namespace YouWatch
             {
                 ShowVideo(txtURL.Text);
             }
+        }
+        private void txtURL_TextChanged(object sender, EventArgs e)
+        {
+            picBarcode.Image = GenerateQRCode(txtURL.Text, 3);
         }
 
         private void lblCloseControls_Click(object sender, EventArgs e)

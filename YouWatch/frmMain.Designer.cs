@@ -44,11 +44,13 @@
             this.btnMinimize = new System.Windows.Forms.Button();
             this.btnGO = new System.Windows.Forms.Button();
             this.lblURL = new System.Windows.Forms.Label();
+            this.picBarcode = new System.Windows.Forms.PictureBox();
             this.timHider = new System.Windows.Forms.Timer(this.components);
             this.wbbYouTube = new System.Windows.Forms.WebBrowser();
             this.ttp = new System.Windows.Forms.ToolTip(this.components);
             this.pnlTop.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trkBar_Opacity)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picBarcode)).BeginInit();
             this.SuspendLayout();
             // 
             // txtURL
@@ -61,6 +63,7 @@
             this.txtURL.Name = "txtURL";
             this.txtURL.Size = new System.Drawing.Size(446, 29);
             this.txtURL.TabIndex = 0;
+            this.txtURL.TextChanged += new System.EventHandler(this.txtURL_TextChanged);
             this.txtURL.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtURL_KeyDown);
             this.txtURL.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.txtURL_MouseDoubleClick);
             // 
@@ -93,11 +96,11 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.trkBar_Opacity.AutoSize = false;
             this.trkBar_Opacity.Cursor = System.Windows.Forms.Cursors.Default;
-            this.trkBar_Opacity.Location = new System.Drawing.Point(12, 60);
+            this.trkBar_Opacity.Location = new System.Drawing.Point(45, 55);
             this.trkBar_Opacity.Maximum = 100;
             this.trkBar_Opacity.Minimum = 20;
             this.trkBar_Opacity.Name = "trkBar_Opacity";
-            this.trkBar_Opacity.Size = new System.Drawing.Size(597, 23);
+            this.trkBar_Opacity.Size = new System.Drawing.Size(528, 29);
             this.trkBar_Opacity.TabIndex = 7;
             this.trkBar_Opacity.TickStyle = System.Windows.Forms.TickStyle.TopLeft;
             this.ttp.SetToolTip(this.trkBar_Opacity, "Change form\'s opacity.");
@@ -109,7 +112,7 @@
             this.chkMoveByMouse.AutoSize = true;
             this.chkMoveByMouse.Cursor = System.Windows.Forms.Cursors.Default;
             this.chkMoveByMouse.Enabled = false;
-            this.chkMoveByMouse.Location = new System.Drawing.Point(376, 38);
+            this.chkMoveByMouse.Location = new System.Drawing.Point(409, 41);
             this.chkMoveByMouse.Name = "chkMoveByMouse";
             this.chkMoveByMouse.Size = new System.Drawing.Size(103, 17);
             this.chkMoveByMouse.TabIndex = 6;
@@ -122,7 +125,7 @@
             this.chkShowBorder.Checked = true;
             this.chkShowBorder.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkShowBorder.Cursor = System.Windows.Forms.Cursors.Default;
-            this.chkShowBorder.Location = new System.Drawing.Point(12, 38);
+            this.chkShowBorder.Location = new System.Drawing.Point(45, 41);
             this.chkShowBorder.Name = "chkShowBorder";
             this.chkShowBorder.Size = new System.Drawing.Size(87, 17);
             this.chkShowBorder.TabIndex = 2;
@@ -136,7 +139,7 @@
             this.chkShowInTaskbar.Checked = true;
             this.chkShowInTaskbar.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkShowInTaskbar.Cursor = System.Windows.Forms.Cursors.Default;
-            this.chkShowInTaskbar.Location = new System.Drawing.Point(105, 38);
+            this.chkShowInTaskbar.Location = new System.Drawing.Point(138, 41);
             this.chkShowInTaskbar.Name = "chkShowInTaskbar";
             this.chkShowInTaskbar.Size = new System.Drawing.Size(106, 17);
             this.chkShowInTaskbar.TabIndex = 3;
@@ -148,7 +151,7 @@
             // 
             this.chkKeepRatio.AutoSize = true;
             this.chkKeepRatio.Cursor = System.Windows.Forms.Cursors.Default;
-            this.chkKeepRatio.Location = new System.Drawing.Point(296, 38);
+            this.chkKeepRatio.Location = new System.Drawing.Point(329, 41);
             this.chkKeepRatio.Name = "chkKeepRatio";
             this.chkKeepRatio.Size = new System.Drawing.Size(79, 17);
             this.chkKeepRatio.TabIndex = 5;
@@ -162,7 +165,7 @@
             this.chkKeepTopOn.Checked = true;
             this.chkKeepTopOn.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkKeepTopOn.Cursor = System.Windows.Forms.Cursors.Default;
-            this.chkKeepTopOn.Location = new System.Drawing.Point(217, 38);
+            this.chkKeepTopOn.Location = new System.Drawing.Point(250, 41);
             this.chkKeepTopOn.Name = "chkKeepTopOn";
             this.chkKeepTopOn.Size = new System.Drawing.Size(73, 17);
             this.chkKeepTopOn.TabIndex = 4;
@@ -250,6 +253,18 @@
             this.lblURL.TabIndex = 2;
             this.lblURL.Text = "URL";
             this.lblURL.MouseClick += new System.Windows.Forms.MouseEventHandler(this.lblURL_MouseClick);
+            this.lblURL.MouseEnter += new System.EventHandler(this.lblURL_MouseEnter);
+            this.lblURL.MouseLeave += new System.EventHandler(this.lblURL_MouseLeave);
+            this.lblURL.MouseHover += new System.EventHandler(this.lblURL_MouseHover);
+            // 
+            // picBarcode
+            // 
+            this.picBarcode.Location = new System.Drawing.Point(260, 137);
+            this.picBarcode.Name = "picBarcode";
+            this.picBarcode.Size = new System.Drawing.Size(100, 100);
+            this.picBarcode.TabIndex = 8;
+            this.picBarcode.TabStop = false;
+            this.picBarcode.Visible = false;
             // 
             // timHider
             // 
@@ -273,6 +288,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(621, 375);
+            this.Controls.Add(this.picBarcode);
             this.Controls.Add(this.wbbYouTube);
             this.Controls.Add(this.pnlTop);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -291,6 +307,7 @@
             this.pnlTop.ResumeLayout(false);
             this.pnlTop.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trkBar_Opacity)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picBarcode)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -314,6 +331,7 @@
         private System.Windows.Forms.Button btnMaximize;
         private System.Windows.Forms.Button btnHideControls;
         private System.Windows.Forms.Button btnMinimize;
+        private System.Windows.Forms.PictureBox picBarcode;
     }
 }
 
