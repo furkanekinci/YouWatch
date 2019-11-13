@@ -111,6 +111,8 @@ namespace YouWatch
         private string LastSessionFilePath = "LastSession.dat";
 
         Size BeforeSize;
+        Size BeforeMinimizeSize;
+        Point BeforeMinimizePosition;
 
         int timCounter = 0;
 
@@ -488,6 +490,9 @@ namespace YouWatch
             InitializeComponent();
 
             wbbYouTube.ScriptErrorsSuppressed = false;
+
+            nicSystemTray.Text = this.Text;
+            nicSystemTray.Icon = this.Icon;
         }
         private void frmMain_Load(object sender, EventArgs e)
         {
@@ -501,6 +506,9 @@ namespace YouWatch
             }
 
             ShowVideo(txtURL.Text);
+
+            this.BeforeMinimizeSize = this.Size;
+            this.BeforeMinimizePosition = this.Location;
         }
         private void frmMain_ResizeBegin(object sender, EventArgs e)
         {
@@ -522,6 +530,9 @@ namespace YouWatch
             }
 
             this.IsResized = false;
+
+            this.BeforeMinimizeSize = this.Size;
+            this.BeforeMinimizePosition = this.Location;
         }
         private void frmMain_MouseMoved()
         {
@@ -549,6 +560,8 @@ namespace YouWatch
         }
         private void frmMain_FormClosing(object sender, FormClosingEventArgs e)
         {
+            nicSystemTray.Visible = false;
+
             SaveSession();
             UnregisterHotKey(this.Handle, 1);
         }
@@ -742,6 +755,33 @@ namespace YouWatch
         {
             pnlTop.Visible = ControlsPanelVisible = false;
             this.Height = this.Height - pnlTop.Height;
+        }
+
+        private void nicSystemTray_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                if (this.Visible || this.WindowState == FormWindowState.Minimized)
+                {
+                    this.Hide();
+                    this.WindowState = FormWindowState.Normal;
+                }
+                else
+                {
+                    this.Show();
+                    this.WindowState = FormWindowState.Normal;
+                    this.Size = this.BeforeMinimizeSize;
+                    this.Location = this.BeforeMinimizePosition;                    
+                }
+            }
+            else if (e.Button == MouseButtons.Right)
+            {
+                this.Show();
+                this.WindowState = FormWindowState.Normal;
+
+                this.Left = (Screen.PrimaryScreen.WorkingArea.Width - this.Width) / 2;
+                this.Top = (Screen.PrimaryScreen.WorkingArea.Height - this.Height) / 2;
+            }
         }
     }
 }

@@ -48,6 +48,7 @@
             this.timHider = new System.Windows.Forms.Timer(this.components);
             this.wbbYouTube = new System.Windows.Forms.WebBrowser();
             this.ttp = new System.Windows.Forms.ToolTip(this.components);
+            this.nicSystemTray = new System.Windows.Forms.NotifyIcon(this.components);
             this.pnlTop.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trkBar_Opacity)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picBarcode)).BeginInit();
@@ -283,6 +284,12 @@
             this.wbbYouTube.TabIndex = 0;
             this.wbbYouTube.DocumentCompleted += new System.Windows.Forms.WebBrowserDocumentCompletedEventHandler(this.wbbYouTube_DocumentCompleted);
             // 
+            // nicSystemTray
+            // 
+            this.nicSystemTray.Text = "notifyIcon1";
+            this.nicSystemTray.Visible = true;
+            this.nicSystemTray.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.nicSystemTray_MouseDoubleClick);
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -293,6 +300,7 @@
             this.Controls.Add(this.pnlTop);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
+            this.MinimumSize = new System.Drawing.Size(400, 400);
             this.Name = "frmMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "YouWatch";
@@ -332,6 +340,7 @@
         private System.Windows.Forms.Button btnHideControls;
         private System.Windows.Forms.Button btnMinimize;
         private System.Windows.Forms.PictureBox picBarcode;
+        private System.Windows.Forms.NotifyIcon nicSystemTray;
     }
 }
 
