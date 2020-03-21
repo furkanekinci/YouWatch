@@ -51,17 +51,44 @@ namespace YouWatch
                 }
             }
 
-            if ((m.Msg == WM_SYSCOMMAND) && ((int)m.WParam == SYSMENU_SHOW_HIDE_CONTROLS_ID))
+            if ((m.Msg == WM_SYSCOMMAND))
             {
-                pnlTop.Visible = ControlsPanelVisible = !ControlsPanelVisible;
-
-                if (pnlTop.Visible)
+                if (((int)m.WParam == SYSMENU_SHOW_HIDE_FORM_BORDER_ID))
                 {
-                    this.Height = this.Height + pnlTop.Height;
+                    chkShowBorder.Checked = !chkShowBorder.Checked;
                 }
-                else
+                else if (((int)m.WParam == SYSMENU_SHOW_HIDE_CONTROLS_ID))
                 {
-                    this.Height = this.Height - pnlTop.Height;
+                    pnlTop.Visible = ControlsPanelVisible = !ControlsPanelVisible;
+
+                    if (pnlTop.Visible)
+                    {
+                        this.Height = this.Height + pnlTop.Height;
+                    }
+                    else
+                    {
+                        this.Height = this.Height - pnlTop.Height;
+                    }
+                }
+                else if (((int)m.WParam == SYSMENU_OPACITY_100_ID))
+                {
+                    trkBar_Opacity.Value = 100;
+                }
+                else if (((int)m.WParam == SYSMENU_OPACITY_80_ID))
+                {
+                    trkBar_Opacity.Value = 80;
+                }
+                else if (((int)m.WParam == SYSMENU_OPACITY_60_ID))
+                {
+                    trkBar_Opacity.Value = 60;
+                }
+                else if (((int)m.WParam == SYSMENU_OPACITY_40_ID))
+                {
+                    trkBar_Opacity.Value = 40;
+                }
+                else if (((int)m.WParam == SYSMENU_OPACITY_20_ID))
+                {
+                    trkBar_Opacity.Value = 20;
                 }
             }
         }
@@ -84,7 +111,13 @@ namespace YouWatch
         private static extern bool InsertMenu(IntPtr hMenu, int uPosition, int uFlags, int uIDNewItem, string lpNewItem);
 
 
-        private int SYSMENU_SHOW_HIDE_CONTROLS_ID = 0x1;
+        private int SYSMENU_SHOW_HIDE_FORM_BORDER_ID = 0x1;
+        private int SYSMENU_SHOW_HIDE_CONTROLS_ID = 0x2;
+        private int SYSMENU_OPACITY_100_ID = 0x3;
+        private int SYSMENU_OPACITY_80_ID = 0x4;
+        private int SYSMENU_OPACITY_60_ID = 0x5;
+        private int SYSMENU_OPACITY_40_ID = 0x6;
+        private int SYSMENU_OPACITY_20_ID = 0x7;
         #endregion
 
         #region Focus
@@ -455,7 +488,23 @@ namespace YouWatch
             AppendMenu(hSysMenu, MF_SEPARATOR, 0, string.Empty);
 
             // Add the About menu item
+            AppendMenu(hSysMenu, MF_STRING, SYSMENU_SHOW_HIDE_FORM_BORDER_ID, "Show/Hide Form Border");
+
+            // Add a separator
+            AppendMenu(hSysMenu, MF_SEPARATOR, 0, string.Empty);
+
+            // Add the About menu item
             AppendMenu(hSysMenu, MF_STRING, SYSMENU_SHOW_HIDE_CONTROLS_ID, "Show/Hide Controls");
+
+            // Add a separator
+            AppendMenu(hSysMenu, MF_SEPARATOR, 0, string.Empty);
+
+            // Add the About menu item
+            AppendMenu(hSysMenu, MF_STRING, SYSMENU_OPACITY_100_ID, "Opacity: 100%");
+            AppendMenu(hSysMenu, MF_STRING, SYSMENU_OPACITY_80_ID, "Opacity: 80%");
+            AppendMenu(hSysMenu, MF_STRING, SYSMENU_OPACITY_60_ID, "Opacity: 60%");
+            AppendMenu(hSysMenu, MF_STRING, SYSMENU_OPACITY_40_ID, "Opacity: 40%");
+            AppendMenu(hSysMenu, MF_STRING, SYSMENU_OPACITY_20_ID, "Opacity: 20%");
         }
 
         private Bitmap GenerateQRCode(string pContent, int pScale = 3)
@@ -678,6 +727,13 @@ namespace YouWatch
         {
             picBarcode.Image = GenerateQRCode(txtURL.Text, 3);
         }
+        private void txtURL_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                txtURL.Text = ReadURLFromClipboard();
+            }
+        }
 
         private void lblCloseControls_Click(object sender, EventArgs e)
         {
@@ -704,14 +760,6 @@ namespace YouWatch
             if (chkMoveByMouse.Checked && this.FormBorderStyle == FormBorderStyle.None)
             {
                 MoveForm();
-            }
-        }
-
-        private void txtURL_MouseDoubleClick(object sender, MouseEventArgs e)
-        {
-            if (e.Button == MouseButtons.Left)
-            {
-                txtURL.Text = ReadURLFromClipboard();
             }
         }
 
@@ -771,7 +819,7 @@ namespace YouWatch
                     this.Show();
                     this.WindowState = FormWindowState.Normal;
                     this.Size = this.BeforeMinimizeSize;
-                    this.Location = this.BeforeMinimizePosition;                    
+                    this.Location = this.BeforeMinimizePosition;
                 }
             }
             else if (e.Button == MouseButtons.Right)
@@ -782,6 +830,11 @@ namespace YouWatch
                 this.Left = (Screen.PrimaryScreen.WorkingArea.Width - this.Width) / 2;
                 this.Top = (Screen.PrimaryScreen.WorkingArea.Height - this.Height) / 2;
             }
+        }
+
+        private void showHideToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            chkShowBorder.Checked = !chkShowBorder.Checked;
         }
     }
 }

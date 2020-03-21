@@ -49,9 +49,12 @@
             this.wbbYouTube = new System.Windows.Forms.WebBrowser();
             this.ttp = new System.Windows.Forms.ToolTip(this.components);
             this.nicSystemTray = new System.Windows.Forms.NotifyIcon(this.components);
+            this.ctxMnu_Systray = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.showHideToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pnlTop.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trkBar_Opacity)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picBarcode)).BeginInit();
+            this.ctxMnu_Systray.SuspendLayout();
             this.SuspendLayout();
             // 
             // txtURL
@@ -286,9 +289,24 @@
             // 
             // nicSystemTray
             // 
+            this.nicSystemTray.ContextMenuStrip = this.ctxMnu_Systray;
             this.nicSystemTray.Text = "notifyIcon1";
             this.nicSystemTray.Visible = true;
             this.nicSystemTray.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.nicSystemTray_MouseDoubleClick);
+            // 
+            // ctxMnu_Systray
+            // 
+            this.ctxMnu_Systray.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.showHideToolStripMenuItem});
+            this.ctxMnu_Systray.Name = "ctxMnu_Systray";
+            this.ctxMnu_Systray.Size = new System.Drawing.Size(203, 48);
+            // 
+            // showHideToolStripMenuItem
+            // 
+            this.showHideToolStripMenuItem.Name = "showHideToolStripMenuItem";
+            this.showHideToolStripMenuItem.Size = new System.Drawing.Size(202, 22);
+            this.showHideToolStripMenuItem.Text = "Show/Hide Form Border";
+            this.showHideToolStripMenuItem.Click += new System.EventHandler(this.showHideToolStripMenuItem_Click);
             // 
             // frmMain
             // 
@@ -300,7 +318,7 @@
             this.Controls.Add(this.pnlTop);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
-            this.MinimumSize = new System.Drawing.Size(400, 400);
+            this.MinimumSize = new System.Drawing.Size(100, 100);
             this.Name = "frmMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "YouWatch";
@@ -316,6 +334,7 @@
             this.pnlTop.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trkBar_Opacity)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picBarcode)).EndInit();
+            this.ctxMnu_Systray.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -341,6 +360,8 @@
         private System.Windows.Forms.Button btnMinimize;
         private System.Windows.Forms.PictureBox picBarcode;
         private System.Windows.Forms.NotifyIcon nicSystemTray;
+        private System.Windows.Forms.ContextMenuStrip ctxMnu_Systray;
+        private System.Windows.Forms.ToolStripMenuItem showHideToolStripMenuItem;
     }
 }
 

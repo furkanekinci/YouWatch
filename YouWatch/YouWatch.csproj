@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>YouWatch</RootNamespace>
     <AssemblyName>YouWatch</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
     <PublishUrl>publish\</PublishUrl>
@@ -27,6 +27,8 @@
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -89,16 +91,61 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BaseForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BaseForm.Designer.cs">
+      <DependentUpon>BaseForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmHeader.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmHeader.Designer.cs">
+      <DependentUpon>frmHeader.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmList.Designer.cs">
+      <DependentUpon>frmList.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmMain.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmMain.Designer.cs">
       <DependentUpon>frmMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmView.Designer.cs">
+      <DependentUpon>frmView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmYouWatch.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmYouWatch.Designer.cs">
+      <DependentUpon>frmYouWatch.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="BaseForm.resx">
+      <DependentUpon>BaseForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmHeader.resx">
+      <DependentUpon>frmHeader.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmList.resx">
+      <DependentUpon>frmList.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmView.resx">
+      <DependentUpon>frmView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmYouWatch.resx">
+      <DependentUpon>frmYouWatch.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -132,6 +179,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="1491180753_Youtube2.ico" />
+    <None Include="Resources\iconfinder_list_118647.png" />
+    <None Include="Resources\iconfinder_tv_show_172610.png" />
+    <None Include="Resources\iconfinder_ic_vertical_align_center_48px_352193.png" />
+    <None Include="Resources\iconfinder_view-hide_3671903.png" />
+    <None Include="Resources\kisspng-youtube-logo-black-and-white-computer-icons-youtube-logo-5b3c307596d3c1.3127578415306712216178.png" />
+    <None Include="Resources\iconfinder_you_tube_social_media_logo_1078778.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

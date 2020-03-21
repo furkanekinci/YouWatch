@@ -59,5 +59,66 @@ namespace YouWatch.Properties {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap iconfinder_ic_vertical_align_center_48px_352193 {
+            get {
+                object obj = ResourceManager.GetObject("iconfinder_ic_vertical_align_center_48px_352193", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap iconfinder_list_118647 {
+            get {
+                object obj = ResourceManager.GetObject("iconfinder_list_118647", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap iconfinder_tv_show_172610 {
+            get {
+                object obj = ResourceManager.GetObject("iconfinder_tv_show_172610", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap iconfinder_view_hide_3671903 {
+            get {
+                object obj = ResourceManager.GetObject("iconfinder_view-hide_3671903", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap iconfinder_you_tube_social_media_logo_1078778 {
+            get {
+                object obj = ResourceManager.GetObject("iconfinder_you_tube_social_media_logo_1078778", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap kisspng_youtube_logo_black_and_white_computer_icons_youtube_logo_5b3c307596d3c1_3127578415306712216178 {
+            get {
+                object obj = ResourceManager.GetObject("kisspng-youtube-logo-black-and-white-computer-icons-youtube-logo-5b3c307596d3c1.3" +
+                        "127578415306712216178", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
     }
 }
