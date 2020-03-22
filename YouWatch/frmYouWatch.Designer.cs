@@ -36,18 +36,26 @@
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.quitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.nicSystemTray = new System.Windows.Forms.NotifyIcon(this.components);
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.showHideBorderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pasteGoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.ctxMnu_Systray.SuspendLayout();
             this.SuspendLayout();
             // 
             // ctxMnu_Systray
             // 
             this.ctxMnu_Systray.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.pasteGoToolStripMenuItem,
+            this.toolStripSeparator3,
             this.showHideToolStripMenuItem,
+            this.toolStripSeparator2,
             this.showHideViewToolStripMenuItem,
+            this.showHideBorderToolStripMenuItem,
             this.toolStripSeparator1,
             this.quitToolStripMenuItem});
             this.ctxMnu_Systray.Name = "ctxMnu_Systray";
-            this.ctxMnu_Systray.Size = new System.Drawing.Size(182, 76);
+            this.ctxMnu_Systray.Size = new System.Drawing.Size(182, 154);
             // 
             // showHideToolStripMenuItem
             // 
@@ -83,6 +91,30 @@
             this.nicSystemTray.Visible = true;
             this.nicSystemTray.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.nicSystemTray_MouseDoubleClick);
             // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(178, 6);
+            // 
+            // showHideBorderToolStripMenuItem
+            // 
+            this.showHideBorderToolStripMenuItem.Name = "showHideBorderToolStripMenuItem";
+            this.showHideBorderToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
+            this.showHideBorderToolStripMenuItem.Text = "Show/Hide Border";
+            this.showHideBorderToolStripMenuItem.Click += new System.EventHandler(this.showHideBorderToolStripMenuItem_Click);
+            // 
+            // pasteGoToolStripMenuItem
+            // 
+            this.pasteGoToolStripMenuItem.Name = "pasteGoToolStripMenuItem";
+            this.pasteGoToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
+            this.pasteGoToolStripMenuItem.Text = "Paste && Go";
+            this.pasteGoToolStripMenuItem.Click += new System.EventHandler(this.pasteGoToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(178, 6);
+            // 
             // frmYouWatch
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -110,5 +142,9 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem quitToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem showHideViewToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripMenuItem showHideBorderToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem pasteGoToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
     }
 }

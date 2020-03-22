@@ -149,29 +149,6 @@ namespace YouWatch
             }
         }
 
-        private string ReadURLFromClipboard()
-        {
-            string clip = Clipboard.GetText();
-
-            if (!string.IsNullOrEmpty(clip))
-            {
-                if (!IsUrlValidForYouTube(clip))
-                {
-                    clip = string.Empty;
-                }
-            }
-
-            return clip;
-        }
-
-        private bool IsUrlValidForYouTube(string pURL)
-        {
-            string pattern = @"^(https?\:\/\/)?(www\.)?(youtube\.com|youtu\.?be)\/.+$";
-
-            Regex reg = new Regex(pattern, RegexOptions.Compiled | RegexOptions.IgnoreCase);
-
-            return reg.IsMatch(pURL);
-        }
         private string GenerateEmbedCode(string pURL)
         {
             var uri = new Uri(pURL);
@@ -229,7 +206,7 @@ namespace YouWatch
         {
             if (!string.IsNullOrEmpty(pURL))
             {
-                if (IsUrlValidForYouTube(pURL))
+                if (General.IsUrlValidForYouTube(pURL))
                 {
                     pURL = pURL.Replace("#", "&");
 
@@ -337,7 +314,7 @@ namespace YouWatch
 
             if (string.IsNullOrEmpty(txtURL.Text))
             {
-                txtURL.Text = ReadURLFromClipboard();
+                txtURL.Text = General.ReadURLFromClipboard();
             }
 
             ShowVideo(txtURL.Text);
@@ -375,7 +352,7 @@ namespace YouWatch
         {
             if (e.Button == MouseButtons.Left)
             {
-                txtURL.Text = ReadURLFromClipboard();
+                txtURL.Text = General.ReadURLFromClipboard();
             }
         }
 
@@ -383,7 +360,7 @@ namespace YouWatch
         {
             if (string.IsNullOrEmpty(txtURL.Text.Trim()))
             {
-                txtURL.Text = ReadURLFromClipboard();
+                txtURL.Text = General.ReadURLFromClipboard();
             }
 
             ShowVideo(txtURL.Text);
@@ -392,7 +369,7 @@ namespace YouWatch
         {
             if (string.IsNullOrEmpty(txtURL.Text.Trim()))
             {
-                txtURL.Text = ReadURLFromClipboard();
+                txtURL.Text = General.ReadURLFromClipboard();
             }
 
             ShowVideo(txtURL.Text, false);

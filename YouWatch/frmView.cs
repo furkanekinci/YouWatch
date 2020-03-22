@@ -31,11 +31,12 @@ namespace YouWatch
 
         private int SYSMENU_SHOW_HIDE_FORM_BORDER_ID = 0x1;
         private int SYSMENU_SHOW_HIDE_CONTROLS_ID = 0x2;
-        private int SYSMENU_OPACITY_100_ID = 0x3;
-        private int SYSMENU_OPACITY_80_ID = 0x4;
-        private int SYSMENU_OPACITY_60_ID = 0x5;
-        private int SYSMENU_OPACITY_40_ID = 0x6;
-        private int SYSMENU_OPACITY_20_ID = 0x7;
+        private int SYSMENU_PASTE_AND_GO_ID = 0x3;
+        private int SYSMENU_OPACITY_100_ID = 0x30;
+        private int SYSMENU_OPACITY_80_ID = 0x40;
+        private int SYSMENU_OPACITY_60_ID = 0x50;
+        private int SYSMENU_OPACITY_40_ID = 0x60;
+        private int SYSMENU_OPACITY_20_ID = 0x70;
         #endregion
 
         #region Shortcut
@@ -92,6 +93,16 @@ namespace YouWatch
                 else if (((int)m.WParam == SYSMENU_SHOW_HIDE_CONTROLS_ID))
                 {
                     this.Header.ShowHide();
+                }
+                else if (((int)m.WParam == SYSMENU_PASTE_AND_GO_ID))
+                {
+                    string url = General.ReadURLFromClipboard();
+
+                    if (!string.IsNullOrWhiteSpace(url))
+                    {
+                        this.Header.txtURL.Text = url;
+                        this.Header.ShowVideo(this.Header.txtURL.Text);
+                    }
                 }
                 else if (((int)m.WParam == SYSMENU_OPACITY_100_ID))
                 {
@@ -197,22 +208,16 @@ namespace YouWatch
             // Get a handle to a copy of this form's system (window) menu
             IntPtr hSysMenu = GetSystemMenu(this.Handle, false);
 
-            // Add a separator
             AppendMenu(hSysMenu, MF_SEPARATOR, 0, string.Empty);
+            AppendMenu(hSysMenu, MF_STRING, SYSMENU_PASTE_AND_GO_ID, "Paste && Go");
 
-            // Add the About menu item
-            AppendMenu(hSysMenu, MF_STRING, SYSMENU_SHOW_HIDE_FORM_BORDER_ID, "Show/Hide Form Border");
-
-            // Add a separator
             AppendMenu(hSysMenu, MF_SEPARATOR, 0, string.Empty);
-
-            // Add the About menu item
             AppendMenu(hSysMenu, MF_STRING, SYSMENU_SHOW_HIDE_CONTROLS_ID, "Show/Hide Controls");
 
-            // Add a separator
             AppendMenu(hSysMenu, MF_SEPARATOR, 0, string.Empty);
-
-            // Add the About menu item
+            AppendMenu(hSysMenu, MF_STRING, SYSMENU_SHOW_HIDE_FORM_BORDER_ID, "Show/Hide Form Border");
+            
+            AppendMenu(hSysMenu, MF_SEPARATOR, 0, string.Empty);
             AppendMenu(hSysMenu, MF_STRING, SYSMENU_OPACITY_100_ID, "Opacity: 100%");
             AppendMenu(hSysMenu, MF_STRING, SYSMENU_OPACITY_80_ID, "Opacity: 80%");
             AppendMenu(hSysMenu, MF_STRING, SYSMENU_OPACITY_60_ID, "Opacity: 60%");

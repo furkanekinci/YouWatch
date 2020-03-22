@@ -75,6 +75,16 @@ namespace YouWatch
             }
         }
 
+        private void pasteGoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string url = General.ReadURLFromClipboard();
+
+            if (!string.IsNullOrWhiteSpace(url))
+            {
+                this.Header.txtURL.Text = url;
+                this.Header.ShowVideo(this.Header.txtURL.Text);
+            }
+        }
         private void showHideToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Header.ShowHide();
@@ -82,6 +92,17 @@ namespace YouWatch
         private void showHideViewToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.View.ShowHide();
+        }
+        private void showHideBorderToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (this.View.FormBorderStyle != FormBorderStyle.Sizable)
+            {
+                this.View.FormBorderStyle = FormBorderStyle.Sizable;
+            }
+            else
+            {
+                this.View.FormBorderStyle = FormBorderStyle.None;
+            }
         }
         private void quitToolStripMenuItem_Click(object sender, EventArgs e)
         {
