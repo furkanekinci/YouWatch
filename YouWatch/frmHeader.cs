@@ -293,6 +293,10 @@ namespace YouWatch
         {
             chkShowBorder.Checked = pValue;
         }
+        public void ShowHideBorder()
+        {
+            chkShowBorder.Checked = !chkShowBorder.Checked;
+        }
 
 
         public frmHeader()

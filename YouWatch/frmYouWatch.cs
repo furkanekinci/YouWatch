@@ -95,14 +95,7 @@ namespace YouWatch
         }
         private void showHideBorderToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (this.View.FormBorderStyle != FormBorderStyle.Sizable)
-            {
-                this.View.FormBorderStyle = FormBorderStyle.Sizable;
-            }
-            else
-            {
-                this.View.FormBorderStyle = FormBorderStyle.None;
-            }
+            this.Header.ShowHideBorder();
         }
         private void quitToolStripMenuItem_Click(object sender, EventArgs e)
         {

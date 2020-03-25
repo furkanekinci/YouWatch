@@ -81,14 +81,7 @@ namespace YouWatch
             {
                 if (((int)m.WParam == SYSMENU_SHOW_HIDE_FORM_BORDER_ID))
                 {
-                    if (this.FormBorderStyle == FormBorderStyle.Sizable)
-                    {
-                        this.Header.ShowBorder(false);
-                    }
-                    else
-                    {
-                        this.Header.ShowBorder(true);
-                    }
+                    this.Header.ShowHideBorder();
                 }
                 else if (((int)m.WParam == SYSMENU_SHOW_HIDE_CONTROLS_ID))
                 {
@@ -160,6 +153,18 @@ namespace YouWatch
         [DllImportAttribute("user32.dll")]
         public static extern bool ReleaseCapture();
         #endregion
+
+        public void ShowHideBorder()
+        {
+            if (this.FormBorderStyle == FormBorderStyle.Sizable)
+            {
+                this.Header.ShowBorder(false);
+            }
+            else
+            {
+                this.Header.ShowBorder(true);
+            }
+        }
 
         public new void Show()
         {
