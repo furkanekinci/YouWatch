@@ -47,6 +47,7 @@
             this.lbxList.Name = "lbxList";
             this.lbxList.Size = new System.Drawing.Size(514, 484);
             this.lbxList.TabIndex = 0;
+            this.lbxList.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.lbxList_MouseDoubleClick);
             // 
             // btnAddCurrentURL
             // 

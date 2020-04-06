@@ -124,5 +124,17 @@ namespace YouWatch
                 this.Header.ShowVideo(lbxList.Items[lbxList.SelectedIndex].ToString());
             }
         }
+
+        private void lbxList_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            int index = lbxList.IndexFromPoint(e.Location);
+
+            if (index != ListBox.NoMatches
+                && index > -1)
+            {
+                this.Header.txtURL.Text = lbxList.Items[index].ToString();
+                this.Header.ShowVideo(lbxList.Items[index].ToString());
+            }
+        }
     }
 }
