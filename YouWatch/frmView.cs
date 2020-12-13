@@ -32,6 +32,7 @@ namespace YouWatch
         private int SYSMENU_SHOW_HIDE_FORM_BORDER_ID = 0x1;
         private int SYSMENU_SHOW_HIDE_CONTROLS_ID = 0x2;
         private int SYSMENU_PASTE_AND_GO_ID = 0x3;
+        private int SYSMENU_QUIT_ID = 0x4;
         private int SYSMENU_OPACITY_100_ID = 0x30;
         private int SYSMENU_OPACITY_80_ID = 0x40;
         private int SYSMENU_OPACITY_60_ID = 0x50;
@@ -116,6 +117,11 @@ namespace YouWatch
                 else if (((int)m.WParam == SYSMENU_OPACITY_20_ID))
                 {
                     Header.SetOpacity(20);
+                }
+                else if (((int)m.WParam == SYSMENU_QUIT_ID))
+                {
+                    YouWatch.IsClosing = true;
+                    Application.Exit();
                 }
             }
         }
@@ -221,13 +227,16 @@ namespace YouWatch
 
             AppendMenu(hSysMenu, MF_SEPARATOR, 0, string.Empty);
             AppendMenu(hSysMenu, MF_STRING, SYSMENU_SHOW_HIDE_FORM_BORDER_ID, "Show/Hide Form Border");
-            
+
             AppendMenu(hSysMenu, MF_SEPARATOR, 0, string.Empty);
             AppendMenu(hSysMenu, MF_STRING, SYSMENU_OPACITY_100_ID, "Opacity: 100%");
             AppendMenu(hSysMenu, MF_STRING, SYSMENU_OPACITY_80_ID, "Opacity: 80%");
             AppendMenu(hSysMenu, MF_STRING, SYSMENU_OPACITY_60_ID, "Opacity: 60%");
             AppendMenu(hSysMenu, MF_STRING, SYSMENU_OPACITY_40_ID, "Opacity: 40%");
             AppendMenu(hSysMenu, MF_STRING, SYSMENU_OPACITY_20_ID, "Opacity: 20%");
+
+            AppendMenu(hSysMenu, MF_SEPARATOR, 0, string.Empty);
+            AppendMenu(hSysMenu, MF_STRING, SYSMENU_QUIT_ID, "Quit");
         }
 
 
