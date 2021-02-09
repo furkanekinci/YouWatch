@@ -345,6 +345,19 @@ namespace YouWatch
             }
         }
 
+        private void txtURL_TextChanged(object sender, EventArgs e)
+        {
+            string key = "list=";
+
+            if (txtURL.Text.Contains(key))
+            {
+                int start = txtURL.Text.IndexOf(key);
+                int end = txtURL.Text.IndexOf("&", start);
+                int len = end - start > 0 ? end - start : txtURL.Text.Length - start;
+
+                txtURL.Text = txtURL.Text.Remove(start, len);
+            }
+        }
         private void txtURL_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Return)

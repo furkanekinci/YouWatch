@@ -216,6 +216,7 @@
             this.txtURL.Name = "txtURL";
             this.txtURL.Size = new System.Drawing.Size(368, 29);
             this.txtURL.TabIndex = 0;
+            this.txtURL.TextChanged += new System.EventHandler(this.txtURL_TextChanged);
             this.txtURL.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtURL_KeyDown);
             this.txtURL.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.txtURL_MouseDoubleClick);
             // 
